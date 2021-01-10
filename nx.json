@@ -16,9 +16,17 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "accessToken": "NDc0Nzc2NTgtNjExYy00YzYwLWIzY2QtYmQyOGRlNWMwY2IzfHJlYWQtd3JpdGU=",
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
@@ -28,7 +36,9 @@
     },
     "rickandmorty-e2e": {
       "tags": [],
-      "implicitDependencies": ["rickandmorty"]
+      "implicitDependencies": [
+        "rickandmorty"
+      ]
     }
   }
 }
