@@ -60,5 +60,6 @@ jobs:
       - name: Test
         run: |
           npm test
+          npm run e2e
         env:
           CI: true
