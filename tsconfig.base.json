@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ngx-ssr/cache": ["libs/ngx-ssr/cache/src/index.ts"],
-      "ngx-rickandmorty": ["libs/rickandmorty/api/src/index.ts"]
+      "ngx-rickandmorty": ["libs/rickandmorty/api/src/index.ts"],
+      "@ngx-ssr/rickandmorty/utils": ["libs/rickandmorty/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

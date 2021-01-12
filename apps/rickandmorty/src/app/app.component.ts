@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-ssr-root',
+  selector: 'ram-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less'],
 })

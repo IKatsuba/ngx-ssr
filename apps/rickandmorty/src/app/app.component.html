@@ -1,0 +1,36 @@
+<tui-root>
+  <tui-tabs>
+    <a
+      class="tui-space_left-5"
+      tuiTab
+      routerLink="character"
+      routerLinkActive="active"
+      >Characters</a
+    >
+    <a tuiTab routerLink="episode" routerLinkActive="active">Episodes</a>
+    <a tuiTab routerLink="location" routerLinkActive="active">Locations</a>
+  </tui-tabs>
+
+  <div class="tui-container tui-container_adaptive">
+    <div class="tui-row tui-row_adaptive">
+      <div
+        class="tui-col_xs-12 tui-col_s-12 tui-col_sm-12 tui-col_md-10 tui-col-offset_md-1 tui-col_lg-8 tui-col-offset_lg-2"
+      >
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+
+  <ng-container ngProjectAs="tuiOverDialogs">
+
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverNotifications">
+
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverPortals">
+
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverHints">
+
+  </ng-container>
+</tui-root>

@@ -10,7 +10,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/rickandmorty",
+            "outputPath": "dist/apps/rickandmorty/browser",
             "index": "apps/rickandmorty/src/index.html",
             "main": "apps/rickandmorty/src/main.ts",
             "polyfills": "apps/rickandmorty/src/polyfills.ts",
@@ -18,9 +18,16 @@
             "aot": true,
             "assets": [
               "apps/rickandmorty/src/favicon.ico",
-              "apps/rickandmorty/src/assets"
+              "apps/rickandmorty/src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              }
             ],
-            "styles": ["apps/rickandmorty/src/styles.less"],
+            "styles": [
+              "apps/rickandmorty/src/styles.less"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,10 +88,69 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/rickandmorty"],
+          "outputs": [
+            "coverage/apps/rickandmorty"
+          ],
           "options": {
             "jestConfig": "apps/rickandmorty/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/apps/rickandmorty/server",
+            "main": "apps/rickandmorty/server.ts",
+            "tsConfig": "apps/rickandmorty/tsconfig.server.json",
+            "externalDependencies": [
+              "firebase",
+              "@firebase/app",
+              "@firebase/analytics",
+              "@firebase/auth",
+              "@firebase/component",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/installations",
+              "@firebase/messaging",
+              "@firebase/storage",
+              "@firebase/performance",
+              "@firebase/remote-config",
+              "@firebase/util"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/rickandmorty/src/environments/environment.ts",
+                  "with": "apps/rickandmorty/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "rickandmorty:build",
+            "serverTarget": "rickandmorty:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "rickandmorty:build:production",
+              "serverTarget": "rickandmorty:server:production"
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "ssr": true,
+            "functionsNodeVersion": 12
           }
         }
       }
@@ -110,7 +176,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/rickandmorty-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/rickandmorty-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -144,7 +212,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngx-ssr/cache"],
+          "outputs": [
+            "coverage/libs/ngx-ssr/cache"
+          ],
           "options": {
             "jestConfig": "libs/ngx-ssr/cache/jest.config.js",
             "passWithNoTests": true
@@ -189,7 +259,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/rickandmorty/api"],
+          "outputs": [
+            "coverage/libs/rickandmorty/api"
+          ],
           "options": {
             "jestConfig": "libs/rickandmorty/api/jest.config.js",
             "passWithNoTests": true
@@ -201,6 +273,33 @@
             "npm": {
               "pkgRoot": "dist/libs/rickandmorty/api"
             }
+          }
+        }
+      }
+    },
+    "rickandmorty-utils": {
+      "projectType": "library",
+      "root": "libs/rickandmorty/utils",
+      "sourceRoot": "libs/rickandmorty/utils/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/rickandmorty/utils/src/**/*.ts",
+              "libs/rickandmorty/utils/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/rickandmorty/utils"
+          ],
+          "options": {
+            "jestConfig": "libs/rickandmorty/utils/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

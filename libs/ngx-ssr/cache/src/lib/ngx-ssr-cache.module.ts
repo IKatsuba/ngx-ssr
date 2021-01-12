@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { CacheController } from './cache-controller';
 import { LRU_CACHE_OPTIONS, lruCacheFactory } from './lru-cache.factory';
 import { LRUCacheOptions } from './lru-cache';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CacheInterceptor } from './cache.interceptor';
 
 @NgModule({
   imports: [CommonModule],
@@ -18,10 +20,17 @@ export class NgxSsrCacheModule {
           provide: CacheController,
           useFactory: lruCacheFactory,
         },
-        options && {
-          provide: LRU_CACHE_OPTIONS,
-          useValue: options,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: CacheInterceptor,
+          multi: true,
         },
+        options
+          ? {
+              provide: LRU_CACHE_OPTIONS,
+              useValue: options,
+            }
+          : null,
       ],
     };
   }

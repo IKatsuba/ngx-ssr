@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="tui-space_top-6">
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <tui-input formControlName="name" class="tui-form__multi-field"
+      >Name</tui-input
+    >
+    <tui-input formControlName="type" class="tui-form__multi-field"
+      >Type</tui-input
+    >
+  </div>
+  <tui-input formControlName="dimension" class="tui-form__row"
+    >Dimension</tui-input
+  >
+</form>
+
+<div *ngIf="locationResponse$ | async as response">
+  <div class="tui-form__buttons">
+    <a
+      [disabled]="!response.info.prev"
+      tuiButton
+      size="s"
+      appearance="secondary"
+      [routerLink]="[]"
+      [queryParams]="response.info.prev"
+      class="tui-form__button"
+      >Prev</a
+    >
+    <a
+      [disabled]="!response.info.next"
+      tuiButton
+      size="s"
+      appearance="secondary"
+      [routerLink]="[]"
+      [queryParams]="response.info.next"
+      class="tui-form__button"
+      >Next</a
+    >
+  </div>
+
+  <tui-data-list>
+    <a
+      tuiOption
+      *ngFor="let location of response.results"
+      [routerLink]="[location.id]"
+    >
+      {{ location.name }}
+    </a>
+  </tui-data-list>
+</div>
