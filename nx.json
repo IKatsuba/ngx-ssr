@@ -35,6 +35,9 @@
     },
     "ngx-ssr-cache": {
       "tags": []
+    },
+    "rickandmorty-api": {
+      "tags": []
     }
   }
 }

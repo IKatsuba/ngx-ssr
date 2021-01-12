@@ -54,7 +54,8 @@ describe('CacheInterceptor', () => {
   }));
 
   it('should get a response from cache', fakeAsync(async () => {
-    const response = new HttpResponse({ body: {}, url: '/some/url' });
+    const body = {};
+    const response = new HttpResponse({ body, url: '/some/url' });
     await cacheController.set('/some/url', response).toPromise();
 
     const setSpy = jest.spyOn(cacheController, 'set');
@@ -68,7 +69,7 @@ describe('CacheInterceptor', () => {
 
     expect(setSpy).not.toBeCalled();
     expect(getSpy).toBeCalledTimes(1);
-    expect(await responsePromise).toStrictEqual(response);
+    expect(await responsePromise).toStrictEqual(body);
   }));
 
   it('should skip setting the POST response to cache', fakeAsync(async () => {

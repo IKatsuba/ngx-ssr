@@ -1,15 +1,12 @@
 {
-  "name": "@ngx-ssr/cache",
+  "name": "ngx-rickandmorty",
   "version": "0.0.0-development",
   "keywords": [
     "angular",
-    "angulae ssr",
-    "universal",
-    "angular/universal",
-    "ssr",
-    "cache",
-    "lru-cache",
-    "interceptor"
+    "rick",
+    "morty",
+    "api",
+    "rickandmorty"
   ],
   "peerDependencies": {
     "@angular/common": "^11.0.6",

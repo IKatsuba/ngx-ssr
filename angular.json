@@ -159,6 +159,51 @@
           }
         }
       }
+    },
+    "rickandmorty-api": {
+      "projectType": "library",
+      "root": "libs/rickandmorty/api",
+      "sourceRoot": "libs/rickandmorty/api/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/rickandmorty/api/tsconfig.lib.json",
+            "project": "libs/rickandmorty/api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/rickandmorty/api/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/rickandmorty/api/src/**/*.ts",
+              "libs/rickandmorty/api/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/rickandmorty/api"],
+          "options": {
+            "jestConfig": "libs/rickandmorty/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/rickandmorty/api"
+            }
+          }
+        }
+      }
     }
   },
   "cli": {
