@@ -27,7 +27,8 @@
     "start": "nx serve",
     "test": "nx run-many --target test --all",
     "update": "nx migrate latest",
-    "workspace-generator": "nx workspace-generator"
+    "workspace-generator": "nx workspace-generator",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "dependencies": {
     "@angular/animations": "11.0.8",

@@ -1,14 +1,9 @@
 {
   "npmScope": "ngx-ssr",
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -27,21 +22,14 @@
     }
   },
   "projects": {
-    "rickandmorty": {
-      "tags": []
-    },
+    "rickandmorty": { "tags": [] },
     "rickandmorty-e2e": {
       "tags": [],
       "implicitDependencies": ["rickandmorty"]
     },
-    "ngx-ssr-cache": {
-      "tags": []
-    },
-    "rickandmorty-api": {
-      "tags": []
-    },
-    "rickandmorty-utils": {
-      "tags": []
-    }
+    "ngx-ssr-cache": { "tags": [] },
+    "rickandmorty-api": { "tags": [] },
+    "rickandmorty-utils": { "tags": [] },
+    "ngx-ssr-timeout": { "tags": [] }
   }
 }

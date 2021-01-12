@@ -30,7 +30,7 @@ export class NgxSsrCacheModule {
               provide: LRU_CACHE_OPTIONS,
               useValue: options,
             }
-          : null,
+          : [],
       ],
     };
   }
