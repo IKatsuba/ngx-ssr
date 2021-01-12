@@ -14,6 +14,8 @@ import {
 import { TUI_SANITIZER } from '@taiga-ui/cdk';
 import { TuiTabsModule } from '@taiga-ui/kit';
 import { NgxSsrCacheModule } from '@ngx-ssr/cache';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 const unsafeSanitizer: Sanitizer = {
   sanitize: (_: any, value: any) => value,
@@ -30,6 +32,9 @@ const unsafeSanitizer: Sanitizer = {
     TuiRootModule,
     TuiTabsModule,
     NgxSsrCacheModule.configLruCache({ maxAge: 10 * 60_000, maxSize: 50 }),
+    ServiceWorkerModule.register('safety-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   bootstrap: [AppComponent],
   providers: [
