@@ -114,6 +114,51 @@
           }
         }
       }
+    },
+    "ngx-ssr-cache": {
+      "projectType": "library",
+      "root": "libs/ngx-ssr/cache",
+      "sourceRoot": "libs/ngx-ssr/cache/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.json",
+            "project": "libs/ngx-ssr/cache/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-ssr/cache/src/**/*.ts",
+              "libs/ngx-ssr/cache/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-ssr/cache"],
+          "options": {
+            "jestConfig": "libs/ngx-ssr/cache/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/ngx-ssr/cache"
+            }
+          }
+        }
+      }
     }
   },
   "cli": {
