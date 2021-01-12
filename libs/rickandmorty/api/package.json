@@ -1,0 +1,21 @@
+{
+  "name": "ngx-rickandmorty",
+  "version": "0.0.0-development",
+  "keywords": [
+    "angular",
+    "rick",
+    "morty",
+    "api",
+    "rickandmorty"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^11.0.6",
+    "@angular/core": "^11.0.6"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

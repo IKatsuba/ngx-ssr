@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng-rickandmorty": {
+      "hosting": {
+        "rickandmorty": [
+          "ng-rickandmorty"
+        ]
+      }
+    }
+  }
+}

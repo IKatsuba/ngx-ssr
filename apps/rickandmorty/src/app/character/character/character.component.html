@@ -1,0 +1,43 @@
+<div *ngIf="character$ | async as character">
+  <tui-badged-content
+    class="tui-space_top-6"
+    [colorTop]="
+      character.status === 'Alive'
+        ? 'var(--tui-success-fill)'
+        : character.status === 'Dead'
+        ? 'var(--tui-error-fill)'
+        : 'var(--tui-neutral-fill)'
+    "
+    size="xl"
+    [rounded]="true"
+  >
+    <tui-avatar [avatarUrl]="character.image" size="xxl"></tui-avatar>
+  </tui-badged-content>
+
+  <h1>{{ character.name }}</h1>
+  <p>
+    Location:
+    <a tuiLink [routerLink]="['/location', character.location.id]">{{
+      character.location.name
+    }}</a>
+  </p>
+  <p>
+    Origin:
+    <a tuiLink [routerLink]="['/location', character.origin.id]">{{
+      character.origin.name
+    }}</a>
+  </p>
+  <p>Type: {{ character.type }}</p>
+  <p>Status: {{ character.status }}</p>
+  <p>Species: {{ character.species }}</p>
+  <p>Gender: {{ character.gender }}</p>
+  <p>
+    Episodes:
+    <a
+      *ngFor="let episode of character.episode"
+      tuiLink
+      [routerLink]="['/episode', episode.id]"
+      >{{ episode.name }},
+    </a>
+  </p>
+</div>

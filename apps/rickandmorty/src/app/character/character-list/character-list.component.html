@@ -1,0 +1,107 @@
+<form [formGroup]="form" class="tui-space_top-6">
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <tui-input formControlName="name" class="tui-form__multi-field"
+      >Name
+    </tui-input>
+
+    <tui-select
+      formControlName="status"
+      class="tui-form__multi-field"
+      [tuiTextfieldCleaner]="true"
+    >
+      Status
+      <tui-data-list *tuiDataList>
+        <button tuiOption value="Alive">Alive</button>
+        <button tuiOption value="Dead">Dead</button>
+        <button tuiOption value="unknown">unknown</button>
+      </tui-data-list>
+    </tui-select>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <tui-input formControlName="type" class="tui-form__multi-field"
+      >Type
+    </tui-input>
+
+    <tui-input formControlName="species" class="tui-form__multi-field"
+      >Species
+    </tui-input>
+  </div>
+
+  <tui-select
+    formControlName="gender"
+    class="tui-form__row"
+    [tuiTextfieldCleaner]="true"
+  >
+    Gender
+    <tui-data-list *tuiDataList>
+      <button tuiOption value="Female">Female</button>
+      <button tuiOption value="Male">Male</button>
+      <button tuiOption value="Genderless">Genderless</button>
+      <button tuiOption value="unknown">unknown</button>
+    </tui-data-list>
+  </tui-select>
+</form>
+
+<div *ngIf="characterResponse$ | async as response">
+  <div class="tui-form__buttons">
+    <a
+      [disabled]="!response.info.prev"
+      tuiButton
+      size="s"
+      appearance="secondary"
+      [routerLink]="[]"
+      [queryParams]="response.info.prev"
+      class="tui-form__button"
+      >Prev</a
+    >
+    <a
+      [disabled]="!response.info.next"
+      tuiButton
+      size="s"
+      appearance="secondary"
+      [routerLink]="[]"
+      [queryParams]="response.info.next"
+      class="tui-form__button"
+      >Next</a
+    >
+  </div>
+
+  <tui-island
+    class="tui-space_top-4 tui-space_bottom-4"
+    *ngFor="let character of response.results"
+  >
+    <div class="tui-island__content">
+      <figure class="tui-island__figure">
+        <tui-badged-content
+          class="tui-space_top-1"
+          [colorTop]="
+            character.status === 'Alive'
+              ? 'var(--tui-success-fill)'
+              : character.status === 'Dead'
+              ? 'var(--tui-error-fill)'
+              : 'var(--tui-neutral-fill)'
+          "
+          size="m"
+          [rounded]="true"
+        >
+          <tui-avatar
+            [avatarUrl]="character.image"
+            [rounded]="true"
+            size="l"
+          ></tui-avatar>
+        </tui-badged-content>
+      </figure>
+
+      <div>
+        <div class="tui-island__title">{{ character.name }}</div>
+
+        <p class="tui-island__paragraph tui-island__paragraph_link">
+          <a tuiLink [routerLink]="[character.id]">
+            Go to character
+          </a>
+        </p>
+      </div>
+    </div>
+  </tui-island>
+</div>

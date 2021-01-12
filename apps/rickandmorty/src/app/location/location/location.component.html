@@ -1,0 +1,15 @@
+<div *ngIf="location$ | async as location">
+  <h1>{{ location.name }}</h1>
+  <p>Dimension: {{ location.dimension }}</p>
+  <p>Type: {{ location.type }}</p>
+  <p>
+    Residents:
+    <a
+      *ngFor="let resident of location.residents"
+      tuiLink
+      [routerLink]="['/character', resident.id]"
+    >
+      {{ resident.name }},
+    </a>
+  </p>
+</div>

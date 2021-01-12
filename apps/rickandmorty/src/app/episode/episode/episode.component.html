@@ -1,0 +1,15 @@
+<div *ngIf="episode$ | async as episode">
+  <h1>{{ episode.name }}</h1>
+  <p>Episode: {{ episode.episode }}</p>
+  <p>
+    Characters:
+    <a
+      *ngFor="let character of episode.characters"
+      tuiLink
+      [routerLink]="['/character', character.id]"
+    >
+      {{ character.name }}
+      ,
+    </a>
+  </p>
+</div>
