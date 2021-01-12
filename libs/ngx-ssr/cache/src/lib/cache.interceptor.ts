@@ -14,11 +14,15 @@ import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
+  private doc: Document;
+
   constructor(
     private cacheController: CacheController,
     private errorHandler: ErrorHandler,
-    @Inject(DOCUMENT) private doc: Document
-  ) {}
+    @Inject(DOCUMENT) doc: any
+  ) {
+    this.doc = doc;
+  }
 
   intercept(
     request: HttpRequest<unknown>,
