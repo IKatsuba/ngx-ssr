@@ -76,7 +76,7 @@
     "@nrwl/workspace": "11.1.2",
     "@types/jest": "26.0.20",
     "@types/node": "12.12.38",
-    "@typescript-eslint/eslint-plugin": "4.3.0",
+    "@typescript-eslint/eslint-plugin": "4.13.0",
     "@typescript-eslint/parser": "4.13.0",
     "codelyzer": "^6.0.0",
     "cypress": "^6.0.1",
