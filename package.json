@@ -43,7 +43,7 @@
     "@angular/router": "11.0.8",
     "@angular/service-worker": "11.0.8",
     "@ng-web-apis/common": "^1.9.0",
-    "@ng-web-apis/universal": "^1.9.2",
+    "@ng-web-apis/universal": "^1.9.3",
     "@nguniversal/express-engine": "11.0.1",
     "@nrwl/angular": "11.1.2",
     "@taiga-ui/cdk": "^2.1.2",
