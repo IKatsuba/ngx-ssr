@@ -65,7 +65,7 @@
     "@angular/cli": "11.0.6",
     "@angular/compiler-cli": "11.0.8",
     "@angular/language-service": "11.0.8",
-    "@ng-builders/semrel": "^1.0.1",
+    "@ng-builders/semrel": "^1.0.4",
     "@nguniversal/builders": "11.0.1",
     "@nrwl/cli": "11.1.2",
     "@nrwl/cypress": "11.1.2",
