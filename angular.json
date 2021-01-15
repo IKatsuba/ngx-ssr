@@ -338,6 +338,51 @@
           }
         }
       }
+    },
+    "ngx-ssr-platform": {
+      "projectType": "library",
+      "root": "libs/ngx-ssr/platform",
+      "sourceRoot": "libs/ngx-ssr/platform/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.json",
+            "project": "libs/ngx-ssr/platform/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-ssr/platform/src/**/*.ts",
+              "libs/ngx-ssr/platform/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-ssr/platform"],
+          "options": {
+            "jestConfig": "libs/ngx-ssr/platform/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/ngx-ssr/platform"
+            }
+          }
+        }
+      }
     }
   },
   "cli": {

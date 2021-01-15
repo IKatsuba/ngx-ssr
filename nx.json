@@ -1,9 +1,14 @@
 {
   "npmScope": "ngx-ssr",
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
@@ -14,7 +19,12 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "NDc0Nzc2NTgtNjExYy00YzYwLWIzY2QtYmQyOGRlNWMwY2IzfHJlYWQtd3JpdGU=",
-        "cacheableOperations": ["build", "test", "lint", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
         "scan": true
@@ -22,14 +32,29 @@
     }
   },
   "projects": {
-    "rickandmorty": { "tags": [] },
+    "rickandmorty": {
+      "tags": []
+    },
     "rickandmorty-e2e": {
       "tags": [],
-      "implicitDependencies": ["rickandmorty"]
+      "implicitDependencies": [
+        "rickandmorty"
+      ]
     },
-    "ngx-ssr-cache": { "tags": [] },
-    "rickandmorty-api": { "tags": [] },
-    "rickandmorty-utils": { "tags": [] },
-    "ngx-ssr-timeout": { "tags": [] }
+    "ngx-ssr-cache": {
+      "tags": []
+    },
+    "rickandmorty-api": {
+      "tags": []
+    },
+    "rickandmorty-utils": {
+      "tags": []
+    },
+    "ngx-ssr-timeout": {
+      "tags": []
+    },
+    "ngx-ssr-platform": {
+      "tags": []
+    }
   }
 }

@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/rickandmorty/api',
     '<rootDir>/libs/rickandmorty/utils',
     '<rootDir>/libs/ngx-ssr/timeout',
+    '<rootDir>/libs/ngx-ssr/platform',
   ],
 };
