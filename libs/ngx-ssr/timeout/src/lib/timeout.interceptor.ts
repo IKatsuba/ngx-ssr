@@ -2,12 +2,13 @@ import { Inject, Injectable, InjectionToken } from '@angular/core';
 import {
   HttpErrorResponse,
   HttpEvent,
+  HttpEventType,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, timeout } from 'rxjs/operators';
+import { NEVER, Observable, of, throwError } from 'rxjs';
+import { catchError, startWith, switchMap, timeout } from 'rxjs/operators';
 
 export interface TimeoutOptions {
   timeout: number;
@@ -33,9 +34,16 @@ export class TimeoutInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      this.timeoutOptions.timeout
-        ? timeout(this.timeoutOptions.timeout)
-        : (source) => source,
+      switchMap((event) => {
+        if (event.type === HttpEventType.Sent && this.timeoutOptions.timeout) {
+          return NEVER.pipe(
+            startWith(event),
+            timeout(this.timeoutOptions.timeout)
+          );
+        }
+
+        return of(event);
+      }),
       catchError((error) => {
         if (error && error.name === 'TimeoutError') {
           return throwError(
