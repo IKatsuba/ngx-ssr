@@ -69,7 +69,7 @@
     "@nguniversal/builders": "11.0.1",
     "@nrwl/cli": "11.1.2",
     "@nrwl/cypress": "11.1.2",
-    "@nrwl/eslint-plugin-nx": "11.1.2",
+    "@nrwl/eslint-plugin-nx": "11.2.10",
     "@nrwl/jest": "11.1.2",
     "@nrwl/nx-cloud": "11.0.1",
     "@nrwl/tao": "11.1.2",
