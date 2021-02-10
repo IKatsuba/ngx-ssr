@@ -32,7 +32,7 @@ export function withCache(
       });
     }
 
-    const originalUrl = options.req.originalUrl;
+    const originalUrl = options.req?.originalUrl;
 
     if (!originalUrl) {
       runEngine();
