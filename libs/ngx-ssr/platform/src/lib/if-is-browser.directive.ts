@@ -8,9 +8,9 @@ import { IS_BROWSER_PLATFORM } from './tokens';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[isBrowser]',
+  selector: '[ifIsBrowser]',
 })
-export class IsBrowserDirective {
+export class IfIsBrowserDirective {
   constructor(
     @Inject(IS_BROWSER_PLATFORM) isBrowser: boolean,
     templateRef: TemplateRef<any>,

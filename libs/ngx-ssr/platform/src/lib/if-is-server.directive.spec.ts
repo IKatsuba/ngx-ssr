@@ -1,11 +1,11 @@
-import { IsServerDirective } from './is-server.directive';
+import { IfIsServerDirective } from './if-is-server.directive';
 import { render, screen } from '@testing-library/angular';
 import { IS_SERVER_PLATFORM } from './tokens';
 
 describe('IsServerDirective', () => {
   it('should create an element', async () => {
-    await render(IsServerDirective, {
-      template: '<div *isServer>Some text</div>',
+    await render(IfIsServerDirective, {
+      template: '<div *ifIsServer>Some text</div>',
       providers: [
         {
           provide: IS_SERVER_PLATFORM,
@@ -20,8 +20,8 @@ describe('IsServerDirective', () => {
   });
 
   it('should not create an element', async () => {
-    await render(IsServerDirective, {
-      template: '<div *isServer>Some text</div>',
+    await render(IfIsServerDirective, {
+      template: '<div *ifIsServer>Some text</div>',
       providers: [
         {
           provide: IS_SERVER_PLATFORM,

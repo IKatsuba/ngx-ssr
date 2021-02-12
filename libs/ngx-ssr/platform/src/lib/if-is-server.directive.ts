@@ -8,9 +8,9 @@ import { IS_SERVER_PLATFORM } from './tokens';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[isServer]',
+  selector: '[ifIsServer]',
 })
-export class IsServerDirective {
+export class IfIsServerDirective {
   constructor(
     @Inject(IS_SERVER_PLATFORM) isServer: boolean,
     templateRef: TemplateRef<any>,
