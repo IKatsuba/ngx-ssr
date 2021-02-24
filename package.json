@@ -78,7 +78,7 @@
     "@types/jest": "26.0.20",
     "@types/node": "12.12.38",
     "@typescript-eslint/eslint-plugin": "4.15.1",
-    "@typescript-eslint/parser": "4.15.1",
+    "@typescript-eslint/parser": "4.15.2",
     "codelyzer": "^6.0.0",
     "cypress": "^6.5.0",
     "dotenv": "8.2.0",
