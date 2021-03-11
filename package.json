@@ -67,7 +67,7 @@
     "@angular/language-service": "11.0.8",
     "@ng-builders/semrel": "^1.2.0",
     "@nguniversal/builders": "11.0.1",
-    "@nrwl/cli": "11.1.2",
+    "@nrwl/cli": "11.5.1",
     "@nrwl/cypress": "11.1.2",
     "@nrwl/eslint-plugin-nx": "11.1.2",
     "@nrwl/jest": "11.1.2",
