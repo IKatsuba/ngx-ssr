@@ -62,7 +62,7 @@
     "@angular-eslint/eslint-plugin": "~1.2.0",
     "@angular-eslint/eslint-plugin-template": "~1.2.0",
     "@angular-eslint/template-parser": "~1.2.0",
-    "@angular/cli": "11.0.6",
+    "@angular/cli": "11.2.7",
     "@angular/compiler-cli": "11.0.8",
     "@angular/language-service": "11.0.8",
     "@ng-builders/semrel": "^1.2.0",
