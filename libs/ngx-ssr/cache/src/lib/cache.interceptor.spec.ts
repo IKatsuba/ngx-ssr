@@ -20,6 +20,7 @@ describe('CacheInterceptor', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      teardown: { destroyAfterEach: true },
       imports: [HttpClientTestingModule],
       providers: [
         {

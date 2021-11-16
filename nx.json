@@ -19,42 +19,47 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "NDc0Nzc2NTgtNjExYy00YzYwLWIzY2QtYmQyOGRlNWMwY2IzfHJlYWQtd3JpdGU=",
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
-        "scan": true
+        "scan": true,
+        "parallel": 1
       }
     }
   },
-  "projects": {
-    "rickandmorty": {
-      "tags": []
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "rickandmorty",
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
     },
-    "rickandmorty-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "rickandmorty"
-      ]
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "ngx-ssr-cache": {
-      "tags": []
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
     },
-    "rickandmorty-api": {
-      "tags": []
-    },
-    "rickandmorty-utils": {
-      "tags": []
-    },
-    "ngx-ssr-timeout": {
-      "tags": []
-    },
-    "ngx-ssr-platform": {
-      "tags": []
+    "@nrwl/angular:component": {
+      "style": "less"
     }
   }
 }
