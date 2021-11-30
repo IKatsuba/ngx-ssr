@@ -19,12 +19,7 @@
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "NDc0Nzc2NTgtNjExYy00YzYwLWIzY2QtYmQyOGRlNWMwY2IzfHJlYWQtd3JpdGU=",
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
         "canTrackAnalytics": false,
         "showUsageWarnings": true,
         "scan": true
@@ -32,29 +27,35 @@
     }
   },
   "projects": {
-    "rickandmorty": {
-      "tags": []
-    },
-    "rickandmorty-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "rickandmorty"
-      ]
-    },
     "ngx-ssr-cache": {
       "tags": []
     },
-    "rickandmorty-api": {
-      "tags": []
-    },
-    "rickandmorty-utils": {
+    "ngx-ssr-platform": {
       "tags": []
     },
     "ngx-ssr-timeout": {
       "tags": []
     },
-    "ngx-ssr-platform": {
+    "rickandmorty": {
+      "tags": []
+    },
+    "rickandmorty-api": {
+      "tags": []
+    },
+    "rickandmorty-e2e": {
+      "tags": [],
+      "implicitDependencies": ["rickandmorty"]
+    },
+    "rickandmorty-utils": {
       "tags": []
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

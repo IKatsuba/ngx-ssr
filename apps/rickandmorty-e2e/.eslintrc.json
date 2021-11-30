@@ -3,6 +3,10 @@
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
       "files": ["src/plugins/index.js"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off",
