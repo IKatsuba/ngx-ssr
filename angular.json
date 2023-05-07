@@ -4,8 +4,8 @@
     "ngx-ssr-cache": {
       "projectType": "library",
       "root": "libs/ngx-ssr/cache",
-      "sourceRoot": "libs/ngx-ssr/cache/src",
       "prefix": "ngx-ssr",
+      "sourceRoot": "libs/ngx-ssr/cache/src",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
