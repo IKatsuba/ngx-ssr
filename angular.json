@@ -1,6 +1,144 @@
 {
   "version": 1,
   "projects": {
+    "ngx-ssr-cache": {
+      "projectType": "library",
+      "root": "libs/ngx-ssr/cache",
+      "sourceRoot": "libs/ngx-ssr/cache/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.json",
+            "project": "libs/ngx-ssr/cache/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-ssr/cache/src/**/*.ts",
+              "libs/ngx-ssr/cache/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-ssr/cache"],
+          "options": {
+            "jestConfig": "libs/ngx-ssr/cache/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/ngx-ssr/cache"
+            }
+          }
+        }
+      }
+    },
+    "ngx-ssr-platform": {
+      "projectType": "library",
+      "root": "libs/ngx-ssr/platform",
+      "sourceRoot": "libs/ngx-ssr/platform/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.json",
+            "project": "libs/ngx-ssr/platform/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-ssr/platform/src/**/*.ts",
+              "libs/ngx-ssr/platform/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-ssr/platform"],
+          "options": {
+            "jestConfig": "libs/ngx-ssr/platform/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/ngx-ssr/platform"
+            }
+          }
+        }
+      }
+    },
+    "ngx-ssr-timeout": {
+      "projectType": "library",
+      "root": "libs/ngx-ssr/timeout",
+      "sourceRoot": "libs/ngx-ssr/timeout/src",
+      "prefix": "ngx-ssr",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/ngx-ssr/timeout/tsconfig.lib.json",
+            "project": "libs/ngx-ssr/timeout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-ssr/timeout/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-ssr/timeout/src/**/*.ts",
+              "libs/ngx-ssr/timeout/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-ssr/timeout"],
+          "options": {
+            "jestConfig": "libs/ngx-ssr/timeout/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "deploy": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/ngx-ssr/timeout"
+            }
+          }
+        }
+      }
+    },
     "rickandmorty": {
       "projectType": "application",
       "root": "apps/rickandmorty",
@@ -16,6 +154,7 @@
             "polyfills": "apps/rickandmorty/src/polyfills.ts",
             "tsConfig": "apps/rickandmorty/tsconfig.app.json",
             "aot": true,
+            "optimization": false,
             "assets": [
               "apps/rickandmorty/src/favicon.ico",
               "apps/rickandmorty/src/assets",
@@ -36,7 +175,14 @@
                   "with": "apps/rickandmorty/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -84,7 +230,8 @@
               "apps/rickandmorty/src/**/*.ts",
               "apps/rickandmorty/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -100,6 +247,7 @@
             "outputPath": "dist/apps/rickandmorty/server",
             "main": "apps/rickandmorty/server.ts",
             "tsConfig": "apps/rickandmorty/tsconfig.server.json",
+            "optimization": false,
             "externalDependencies": [
               "firebase",
               "@firebase/app",
@@ -127,7 +275,14 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              }
             }
           }
         },
@@ -149,77 +304,6 @@
           "options": {
             "ssr": true,
             "functionsNodeVersion": 12
-          }
-        }
-      }
-    },
-    "rickandmorty-e2e": {
-      "root": "apps/rickandmorty-e2e",
-      "sourceRoot": "apps/rickandmorty-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/rickandmorty-e2e/cypress.json",
-            "tsConfig": "apps/rickandmorty-e2e/tsconfig.e2e.json",
-            "devServerTarget": "rickandmorty:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "rickandmorty:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/rickandmorty-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "ngx-ssr-cache": {
-      "projectType": "library",
-      "root": "libs/ngx-ssr/cache",
-      "sourceRoot": "libs/ngx-ssr/cache/src",
-      "prefix": "ngx-ssr",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.json",
-            "project": "libs/ngx-ssr/cache/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ngx-ssr/cache/src/**/*.ts",
-              "libs/ngx-ssr/cache/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngx-ssr/cache"],
-          "options": {
-            "jestConfig": "libs/ngx-ssr/cache/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "deploy": {
-          "builder": "@ng-builders/semrel:release",
-          "options": {
-            "npm": {
-              "pkgRoot": "dist/libs/ngx-ssr/cache"
-            }
           }
         }
       }
@@ -249,7 +333,8 @@
               "libs/rickandmorty/api/src/**/*.ts",
               "libs/rickandmorty/api/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -269,6 +354,33 @@
         }
       }
     },
+    "rickandmorty-e2e": {
+      "root": "apps/rickandmorty-e2e",
+      "sourceRoot": "apps/rickandmorty-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/rickandmorty-e2e/cypress.json",
+            "tsConfig": "apps/rickandmorty-e2e/tsconfig.e2e.json",
+            "devServerTarget": "rickandmorty:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "rickandmorty:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/rickandmorty-e2e/**/*.{js,ts}"]
+          },
+          "outputs": ["{options.outputFile}"]
+        }
+      }
+    },
     "rickandmorty-utils": {
       "projectType": "library",
       "root": "libs/rickandmorty/utils",
@@ -282,7 +394,8 @@
               "libs/rickandmorty/utils/src/**/*.ts",
               "libs/rickandmorty/utils/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -290,96 +403,6 @@
           "options": {
             "jestConfig": "libs/rickandmorty/utils/jest.config.js",
             "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "ngx-ssr-timeout": {
-      "projectType": "library",
-      "root": "libs/ngx-ssr/timeout",
-      "sourceRoot": "libs/ngx-ssr/timeout/src",
-      "prefix": "ngx-ssr",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/ngx-ssr/timeout/tsconfig.lib.json",
-            "project": "libs/ngx-ssr/timeout/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/ngx-ssr/timeout/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ngx-ssr/timeout/src/**/*.ts",
-              "libs/ngx-ssr/timeout/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngx-ssr/timeout"],
-          "options": {
-            "jestConfig": "libs/ngx-ssr/timeout/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "deploy": {
-          "builder": "@ng-builders/semrel:release",
-          "options": {
-            "npm": {
-              "pkgRoot": "dist/libs/ngx-ssr/timeout"
-            }
-          }
-        }
-      }
-    },
-    "ngx-ssr-platform": {
-      "projectType": "library",
-      "root": "libs/ngx-ssr/platform",
-      "sourceRoot": "libs/ngx-ssr/platform/src",
-      "prefix": "ngx-ssr",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.json",
-            "project": "libs/ngx-ssr/platform/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ngx-ssr/platform/src/**/*.ts",
-              "libs/ngx-ssr/platform/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngx-ssr/platform"],
-          "options": {
-            "jestConfig": "libs/ngx-ssr/platform/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "deploy": {
-          "builder": "@ng-builders/semrel:release",
-          "options": {
-            "npm": {
-              "pkgRoot": "dist/libs/ngx-ssr/platform"
-            }
           }
         }
       }

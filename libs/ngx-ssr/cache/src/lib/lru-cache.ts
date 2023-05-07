@@ -1,6 +1,5 @@
 import { CacheController } from './cache-controller';
 import { defer, Observable, of } from 'rxjs';
-import { pathsToModuleNameMapper } from 'ts-jest';
 
 export interface LRUCacheOptions {
   maxAge: number;

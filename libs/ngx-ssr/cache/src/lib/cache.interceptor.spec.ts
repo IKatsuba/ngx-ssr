@@ -1,3 +1,5 @@
+import 'zone.js';
+import 'zone.js/testing';
 import { fakeAsync, flush, TestBed } from '@angular/core/testing';
 
 import { CacheInterceptor } from './cache.interceptor';
@@ -12,6 +14,10 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { LRUCache } from './lru-cache';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting,
+} from '@angular/platform-browser-dynamic/testing';
 
 describe('CacheInterceptor', () => {
   let cacheController: CacheController;
@@ -19,6 +25,12 @@ describe('CacheInterceptor', () => {
   let httpClient: HttpClient;
 
   beforeEach(() => {
+    TestBed.resetTestEnvironment();
+    TestBed.initTestEnvironment(
+      BrowserDynamicTestingModule,
+      platformBrowserDynamicTesting()
+    );
+
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [
