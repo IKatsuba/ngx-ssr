@@ -11,7 +11,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/ngx-ssr/cache/tsconfig.lib.json",
-            "project": "libs/ngx-ssr/cache/ng-package.json"
+            "project": "libs/ngx-ssr/cache/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
@@ -57,7 +58,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/ngx-ssr/platform/tsconfig.lib.json",
-            "project": "libs/ngx-ssr/platform/ng-package.json"
+            "project": "libs/ngx-ssr/platform/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
@@ -103,7 +105,8 @@
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/ngx-ssr/timeout/tsconfig.lib.json",
-            "project": "libs/ngx-ssr/timeout/ng-package.json"
+            "project": "libs/ngx-ssr/timeout/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
